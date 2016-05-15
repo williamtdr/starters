@@ -1,0 +1,1 @@
+Eventually, this repository will be a tool that sets up a basic node + express project and allows the user to select among libraries and components to include.
