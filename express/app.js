@@ -1,9 +1,6 @@
 var Config = require("./src/config");
 global.user_config = false; // config/config.json
 
-console.log("IoWA - Institute of War Aptitude");
-console.log("---");
-
 var next = (result) => {
 	if(!result) {
 		console.log("There was an error reading the configuration file (config/config.json).");
