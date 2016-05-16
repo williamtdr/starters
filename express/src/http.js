@@ -1,22 +1,3 @@
-/*
- * Serves as the interface to the application.
- * Layout & template files can be found in views/, styles & client-side
- * scripts in static/. When modifying the CSS or JS, run gulp in a separate
- * process to rebuild the minified files the client loads.
- *
- * Url structure:
- * / - Prompt for user & region, then redirect
- *
- * /{region}/{summonerName} - URL the user sees for profiles. Redirects to /
- * with an error if the summoner was not found, otherwise shows basic summoner
- * info and loads data in from an AJAX request, to allow time for the API requests
- * to complete.
- *
- * /data/{region}/{summonerName} - AJAX request from the profile page. Gets and
- * formats data from Riot APIs, then injected as HTML into the profile page when
- * done.
- */
-
 var express = require("express"),
 	exphbs = require("express-handlebars"),
 	compression = require("compression"),
