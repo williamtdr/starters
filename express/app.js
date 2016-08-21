@@ -1,16 +1,19 @@
-var Config = require("./src/config");
-global.user_config = false; // config/config.json
+const Config = require("./src/config"),
+	  log = require("./src/log");
 
-var next = (result) => {
-	if(!result) {
-		console.log("There was an error reading the configuration file (config/config.json).");
-		console.log("Please make sure the file exists, has the proper permissions and valid JSON.");
-		console.log("If you'd like to start over, copy config.sample.json.");
-		return process.exit(1);
-	}
+global.userConfig = false; // config/config.json
 
-	var http = require("./src/http");
-};
+function onConfigLoad() {
+	require("./src/interface/http");
+}
 
-console.log("Reading configuration...");
-global.user_config = new Config("config/config.json", next);
+log.setSourceColor("System", "blue");
+log.setSourceColor("Config", "cyan");
+log.setSourceColor("HTTP", "green");
+log.setSourceColor("Websocket", "yellow");
+
+log.info("System", "App Name");
+log.info("System", "by App Author");
+log.info("Config", "Reading configuration...");
+
+global.userConfig = new Config("config/config.json", onConfigLoad);

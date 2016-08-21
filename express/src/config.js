@@ -4,9 +4,10 @@
 
 "use strict";
 
-var fs = require("fs"),
-	get = require("lodash.get"),
-	set = require("lodash.set");
+const fs = require("fs"),
+	  log = require("./log"),
+	  get = require("lodash.get"),
+	  set = require("lodash.set");
 
 module.exports = class Config {
 	// Create a new config object, and start loading/parsing it. Checks for
@@ -22,7 +23,7 @@ module.exports = class Config {
 
 			if(completed === 2) {
 				if(this.sample && !this.data) {
-					console.log("Creating default configuration from sample...");
+					log.info("Config", "Creating default configuration from sample...");
 					this.data = this.sample;
 					this.save();
 				}
@@ -32,21 +33,21 @@ module.exports = class Config {
 		};
 
 
-		fs.readFile(path, 'utf8', (err, data) => {
+		fs.readFile(path, "utf8", (err, data) => {
 			try {
 				this.data = JSON.parse(data);
-	} catch(e) {}
+			} catch(e) {}
 
-		onComplete();
-	});
+			onComplete();
+		});
 
-		fs.readFile(path.replace(new RegExp('.json$'), '.sample.json'), 'utf8', (err, data) => {
+		fs.readFile(path.replace(new RegExp(".json$"), ".sample.json"), "utf8", (err, data) => {
 			try {
 				this.sample = JSON.parse(data);
-	} catch(e) {}
+			} catch(e) {}
 
-		onComplete();
-	});
+			onComplete();
+		});
 	}
 
 	// Get a config file, or the sample value if it is not set.
