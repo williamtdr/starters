@@ -31,7 +31,7 @@ gulp.task("stop", ["minify-css", "minify-js"], function() {
 	process.exit();
 });
 
-var watcher = gulp.watch(["*.*", "css/**", "js/**"], ["default"]);
+var watcher = gulp.watch(["css/**", "js/**"], ["default"]);
 watcher.on("change", function(event) {
 	console.log("File " + event.path + " was " + event.type + ", running tasks...");
 });
